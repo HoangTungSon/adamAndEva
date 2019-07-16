@@ -7,7 +7,8 @@
 <body>
 <script>
     let Apple = function (weight) {
-        this.weight = Number(weight);
+
+        this.weight = weight;
         this.decrease = function () {
             this.weight -= 1;
         };
@@ -22,64 +23,70 @@
     };
 
     let Human = function (name, gender, weight) {
+
         this.name = name;
         this.gender = gender;
-        this.weight = Number(weight);
+        this.weight = weight;
+
         this.isMale = function () {
+            let check = false;
             if (this.gender === "male") {
-                console.log("I am Adam")
-            } else {
-                console.log("I am Eva")
+                check = true;
             }
+            return check
         };
 
-        this.setGender = function () {
+        this.setGender = function (gender) {
             this.gender = gender;
-        };
-        this.getGender = function () {
-            if (this.gender === 'male') {
-                return true
-            } else if (this.gender === "female") {
-                return false
-            }
         };
 
         this.checkApple = function (apple) {
-            return apple.getWeight();
+            if (apple.getWeight() === 0) {
+                return "Go to Earth"
+            }
         };
+
         this.say = function () {
-            console.log("Let's eat the apple")
+            if (this.isMale()) {
+                console.log("Let's eat the apple")
+            } else {
+                console.log("Don't do anything stupid")
+            }
         };
+
         this.eat = function (apple) {
-            this.weight +=1;
+            this.weight += 1;
             return apple.decrease()
         };
+
         this.getName = function () {
             return this.name;
         };
-        this.setName = function () {
+
+        this.setName = function (name) {
             this.name = name;
         };
+
         this.getWeight = function () {
             return this.weight;
         };
-        this.setWeight = function () {
+        this.setWeight = function (weight) {
             this.weight = weight;
         }
     };
-    let adam = new Human("adam", "male", "10");
-    let eva = new Human("eva", "female", "10");
+
+    let adam = new Human("adam", "male", 10);
+    let eva = new Human("eva", "female", 10);
     let apple = new Apple(10);
 
-    console.log(apple.getWeight());
-    adam.isMale();
-    adam.eat(apple);
-    console.log(adam.getWeight());
-    console.log(apple.getWeight());
-    eva.isMale();
-    eva.eat(apple);
+    adam.say();
+    eva.say();
     console.log(apple.getWeight());
 
+    adam.eat(apple);
+    eva.eat(apple);
+
+    console.log(apple.getWeight());
 
 </script>
 </body>
